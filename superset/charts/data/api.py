@@ -60,6 +60,8 @@ from superset.views.base_api import statsd_metrics
 if TYPE_CHECKING:
     from superset.common.query_context import QueryContext
 
+from superset.commands.chart.data.keyward_data_commands import create_command
+
 logger = logging.getLogger(__name__)
 
 
@@ -237,7 +239,7 @@ class ChartDataRestApi(ChartRestApi):
 
         try:
             query_context = self._create_query_context_from_form(json_body)
-            command = ChartDataCommand(query_context)
+            command = create_command(query_context)
             command.validate()
         except DatasourceNotFound:
             return self.response_404()

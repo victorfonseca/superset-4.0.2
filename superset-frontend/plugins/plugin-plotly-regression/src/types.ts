@@ -1,12 +1,15 @@
-import { QueryFormData } from '@superset-ui/core';
+import { QueryData, QueryFormData } from '@superset-ui/core';
 
 export interface PluginPlotlyRegressionStylesProps {
   height: number;
   width: number;
 }
 
+export type PluginPlotlyRegressionQueryData = QueryData & {
+  keyward_data: any;
+};
 interface PluginPlotlyRegressionCustomizeProps {
-  mark: boolean; // Example prop
+  regressionType: 'linear' | 'quadratic' | 'cubic';
 }
 
 export type PluginPlotlyRegressionQueryFormData = QueryFormData &
@@ -16,5 +19,5 @@ export type PluginPlotlyRegressionQueryFormData = QueryFormData &
 export type PluginPlotlyRegressionProps = PluginPlotlyRegressionStylesProps &
   PluginPlotlyRegressionCustomizeProps & {
     data: any; // add a typing for the real data
-    // add typing here for the props you pass in from transformProps.ts!
+    keywardData: any;
   };

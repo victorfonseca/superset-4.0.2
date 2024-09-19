@@ -1,4 +1,8 @@
-import { buildQueryContext, QueryFormData } from '@superset-ui/core';
+import {
+  buildQueryContext,
+  ensureIsArray,
+  QueryFormData,
+} from '@superset-ui/core';
 
 /**
  * The buildQuery function is used to create an instance of QueryContext that's
@@ -15,12 +19,17 @@ import { buildQueryContext, QueryFormData } from '@superset-ui/core';
  * if a viz needs multiple different result sets.
  */
 export default function buildQuery(formData: QueryFormData) {
-  console.log('BuildQuery:');
-  console.log(formData);
+  const columns = [
+    ...ensureIsArray(formData.x_axis),
+    ...ensureIsArray(formData.y_axis),
+  ];
+
+  console.log('BuildQuery', formData);
 
   return buildQueryContext(formData, baseQueryObject => [
     {
       ...baseQueryObject,
+      columns,
     },
   ]);
 }

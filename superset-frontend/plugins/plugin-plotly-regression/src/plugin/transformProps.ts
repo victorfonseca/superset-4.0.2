@@ -1,6 +1,7 @@
-import { ChartProps, TimeseriesDataRecord } from '@superset-ui/core';
+import { ChartProps } from '@superset-ui/core';
+import { PluginPlotlyRegressionQueryData } from '../types';
 
-export default async function transformProps(chartProps: ChartProps) {
+export default function transformProps(chartProps: ChartProps) {
   /**
    * This function is called after a successful response has been
    * received from the chart data endpoint, and is used to transform
@@ -31,29 +32,20 @@ export default async function transformProps(chartProps: ChartProps) {
    * be seen until restarting the development server.
    */
   const { width, height, formData, queriesData } = chartProps;
-  const { mark } = formData;
+  const { regressionType } = formData;
 
-  const data = queriesData[0].data as TimeseriesDataRecord[];
+  const keywardData = (queriesData[0] as PluginPlotlyRegressionQueryData)
+    .keyward_data as any[];
 
-  console.log('Transform Props:');
+  console.log('Transform Props Start');
   console.log(formData);
   console.log(queriesData);
-
-  try {
-    const response = await fetch(
-      'https://jsonplaceholder.typicode.com/todos/1',
-    );
-    const result = await response.json();
-    console.log('Fetch result', result);
-  } catch (e) {
-    console.log('Fetch error', e);
-  }
+  console.log('Transform Props End');
 
   return {
     width,
     height,
-    data,
-    // and now your control data, manipulated as needed, and passed through as props!
-    mark,
+    keywardData,
+    regressionType,
   };
 }

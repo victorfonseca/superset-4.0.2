@@ -93,7 +93,7 @@ export default class MainPreset extends Preset {
       name: 'Legacy charts',
       presets: [new DeckGLChartPreset()],
       plugins: [
-        new PluginPlotlyRegression().configure({ key: 'plotly_regression' }),
+        new PluginPlotlyRegression().configure({ key: 'keyward_plotly_regression' }),
         new AreaChartPlugin().configure({ key: 'area' }),
         new BarChartPlugin().configure({ key: 'bar' }),
         new BigNumberChartPlugin().configure({ key: 'big_number' }),
