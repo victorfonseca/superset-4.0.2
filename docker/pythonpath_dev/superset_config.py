@@ -28,6 +28,57 @@ from flask_caching.backends.filesystemcache import FileSystemCache
 
 logger = logging.getLogger()
 
+SECRET_KEY = 'BEE2A27FE8695F1151FD6C52AC1F5'
+WELCOME_MESSAGE = "Welcome to Keyward Hub"
+JWT_SECRET_KEY: True
+AUDIT_LOGS: True
+CUSTOM_CSS: True
+CUSTOM_JS: True
+APP_ICON = '/static/assets/images/keyward-logo-png.png'
+APP_NAME = 'Keyward HUB'
+LOGO_RIGHT_TEXT = "Take Control of your Data"
+LOGO_TARGET_PATH = '/superset/welcome'
+AUTH_USER_REGISTRATION = False
+HTML_SANITIZATION = True
+TALISMAN_ENABLED = True
+
+# Allowed format types for upload on Database view
+EXCEL_EXTENSIONS = {"xlsx", "xls"}
+CSV_EXTENSIONS = {"csv", "tsv", "txt"}
+COLUMNAR_EXTENSIONS = {"parquet", "zip"}
+ALLOWED_EXTENSIONS = {*EXCEL_EXTENSIONS, *CSV_EXTENSIONS, *COLUMNAR_EXTENSIONS}
+
+LANGUAGES = {
+    "en": {"flag": "us", "name": "English"},
+    "es": {"flag": "es", "name": "Spanish"},
+    "it": {"flag": "it", "name": "Italian"},
+    "fr": {"flag": "fr", "name": "French"},
+    "de": {"flag": "de", "name": "German"},
+}
+
+CURRENCIES = ["USD", "EUR", "GBP"]
+
+FEATURE_FLAGS = {
+    "VERSIONED_EXPORT": True,
+    "ALERT_REPORTS": True,
+    "ALERTS_ATTACH_REPORTS": True,
+    "ALLOW_ADHOC_SUBQUERY": True,
+    "ALLOW_FULL_CSV_EXPORT": True,
+    "DASHBOARD_CROSS_FILTERS": True,
+    "DASHBOARD_EDIT_CHART_IN_NEW_TAB": True,
+    "DASHBOARD_RBAC": True,
+    "DRILL_BY": True,
+    "EMBEDDED_SUPERSET": True,
+    "ENABLE_TEMPLATE_PROCESSING": True,
+    "GLOBAL_ASYNC_QUERIES": True,
+    "RLS_IN_SQLLAB": True,
+    "SSH_TUNNELING": True,
+    "CONFIRM_DASHBOARD_DIFF": True,
+    "ESCAPE_MARKDOWN_HTML": True,
+    "SQL_VALIDATORS_BY_ENGINE": True,
+}
+
+
 DATABASE_DIALECT = os.getenv("DATABASE_DIALECT")
 DATABASE_USER = os.getenv("DATABASE_USER")
 DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
